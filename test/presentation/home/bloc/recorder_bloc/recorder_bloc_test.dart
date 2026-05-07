@@ -39,37 +39,50 @@ void main() {
     );
 
     blocTest<RecorderBloc, RecorderState>(
-      'requests permission before starting when initial permission check fails',
+      'emits no state changes and a permission notification when permission is denied',
       setUp: () {
-        final amplitudeStream = Stream<AmplitudeData>.value(
-          const AmplitudeData(current: 0.5, max: 1),
-        );
         when(
           () => recorderService.resolvePermission(),
         ).thenAnswer((_) async => false);
-        when(
-          () => recorderService.requestPermission(),
-        ).thenAnswer((_) async => true);
-        when(() => recorderService.start()).thenAnswer((_) async {});
-        when(
-          () => recorderService.getAmplitudeStream(),
-        ).thenAnswer((_) => amplitudeStream);
       },
       build: () => RecorderBloc(recorderService: recorderService),
       act: (bloc) => bloc.add(const RecorderEvent.start()),
-      expect: () => [
-        const RecorderState(show: true),
-        isA<RecorderState>()
-            .having((state) => state.show, 'show', true)
-            .having((state) => state.recording, 'recording', true)
-            .having((state) => state.amplitudeStream, 'amplitudeStream', isNotNull)
-            .having((state) => state.startedAt, 'startedAt', isNotNull),
-      ],
+      expect: () => <RecorderState>[],
       verify: (_) {
         verify(() => recorderService.resolvePermission()).called(1);
-        verify(() => recorderService.requestPermission()).called(1);
-        verify(() => recorderService.start()).called(1);
-        verify(() => recorderService.getAmplitudeStream()).called(1);
+        verifyNever(() => recorderService.requestPermission());
+        verifyNever(() => recorderService.start());
+        verifyNever(() => recorderService.getAmplitudeStream());
+      },
+    );
+
+    test(
+      'emits no mic permission notification when permission is denied',
+      () async {
+        when(
+          () => recorderService.resolvePermission(),
+        ).thenAnswer((_) async => false);
+
+        final bloc = RecorderBloc(recorderService: recorderService);
+
+        final notificationExpectation = expectLater(
+          bloc.notificationStream,
+          emits(
+            isA<RecorderNotification>().having(
+              (notification) => notification.maybeMap(
+                noMicPermission: (_) => true,
+                orElse: () => false,
+              ),
+              'noMicPermission',
+              true,
+            ),
+          ),
+        );
+
+        bloc.add(const RecorderEvent.start());
+
+        await notificationExpectation;
+        await bloc.close();
       },
     );
 
@@ -153,21 +166,23 @@ void main() {
       final notificationExpectation = expectLater(
         bloc.notificationStream,
         emits(
-          isA<RecorderNotification>().having(
-            (notification) => notification.map(
-              recorded: (recorded) => recorded.file,
-              failure: (_) => null,
+            isA<RecorderNotification>().having(
+              (notification) => notification.map(
+                recorded: (recorded) => recorded.file,
+                failure: (_) => null,
+                noMicPermission: (_) => null,
+              ),
+              'file',
+              file,
+            ).having(
+              (notification) => notification.map(
+                recorded: (recorded) => recorded.duration,
+                failure: (_) => null,
+                noMicPermission: (_) => null,
+              ),
+              'duration',
+              const Duration(seconds: 3),
             ),
-            'file',
-            file,
-          ).having(
-            (notification) => notification.map(
-              recorded: (recorded) => recorded.duration,
-              failure: (_) => null,
-            ),
-            'duration',
-            const Duration(seconds: 3),
-          ),
         ),
       );
 

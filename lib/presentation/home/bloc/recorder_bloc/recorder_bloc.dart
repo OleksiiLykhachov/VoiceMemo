@@ -35,7 +35,8 @@ class RecorderBloc extends Bloc<RecorderEvent, RecorderState>
       final hasPermission = await _recorderService.resolvePermission();
 
       if (!hasPermission) {
-        await _recorderService.requestPermission();
+        emitNotification(const RecorderNotification.noMicPermission());
+        return;
       }
 
       emit(state.copyWith(show: true));

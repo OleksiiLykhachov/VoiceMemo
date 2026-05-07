@@ -6,4 +6,7 @@ class RecorderNotification with _$RecorderNotification {
       _Recorded;
   const factory RecorderNotification.failure(String message) =
       _FailureNotification;
+
+  const factory RecorderNotification.noMicPermission() =
+      _NoMicPermissionNotification;
 }

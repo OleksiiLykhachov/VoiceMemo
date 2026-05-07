@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
     if (!context.mounted) {
       return;
     }
-    
+
     final name = await SaveRecordBottomSheet.show(
       context: context,
       duration: duration,
@@ -74,6 +74,9 @@ class HomePage extends StatelessWidget {
           notificaiton.whenOrNull(
             recorded: (file, duration) {
               _onNewRecord(context, file, duration);
+            },
+            noMicPermission: () {
+              NoMicrophoneAccessDialog.show(context);
             },
           );
         },
