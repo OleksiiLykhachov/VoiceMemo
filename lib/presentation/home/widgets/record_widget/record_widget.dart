@@ -6,7 +6,7 @@ import 'package:voice_memos/domain/domain.dart';
 
 import 'widgets/record_title.dart';
 import 'widgets/record_duration.dart';
-import 'widgets/palyer_controlls.dart';
+import 'widgets/player_controls.dart';
 
 class RecordWidget extends StatelessWidget {
   final Record record;
@@ -64,9 +64,9 @@ class RecordWidget extends StatelessWidget {
                   child: Column(
                     children: [
                       Expanded(
-                        child: PlayerControlls(
+                        child: PlayerControls(
                           onTogglePlay: callbacks?.onTogglePlay,
-                          onForward: callbacks?.seekFroward,
+                          onForward: callbacks?.seekForward,
                           onBackward: callbacks?.seekBackward,
                           playing: playing,
                         ),
@@ -107,13 +107,13 @@ class RecordWidget extends StatelessWidget {
 class RecordCallbacks {
   final VoidCallback onTogglePlay;
   final ValueChanged<Duration> seekBackward;
-  final ValueChanged<Duration> seekFroward;
+  final ValueChanged<Duration> seekForward;
   final VoidCallback showOptions;
 
   const RecordCallbacks({
     required this.onTogglePlay,
     required this.seekBackward,
-    required this.seekFroward,
+    required this.seekForward,
     required this.showOptions,
   });
 }

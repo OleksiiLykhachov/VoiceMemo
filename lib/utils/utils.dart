@@ -4,7 +4,7 @@ export 'get_it_provider.dart';
 export 'bloc_notification/bloc_notification.dart';
 export 'error_notification_mixin.dart';
 export 'toast_notification/toast_notification.dart';
-export 'recorder_service/recorder_serivce.dart';
+export 'recorder_service/recorder_service.dart';
 export 'player_service/player_service.dart';
 export 'records_path_util.dart';
 export 'combine_latest_transformer.dart';

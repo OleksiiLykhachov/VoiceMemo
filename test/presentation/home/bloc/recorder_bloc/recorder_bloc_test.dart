@@ -4,7 +4,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:voice_memos/presentation/home/bloc/recorder_bloc/recorder_bloc.dart';
-import 'package:voice_memos/utils/recorder_service/recorder_serivce.dart';
+import 'package:voice_memos/utils/recorder_service/recorder_service.dart';
 
 class _MockRecorderService extends Mock implements RecorderService {}
 

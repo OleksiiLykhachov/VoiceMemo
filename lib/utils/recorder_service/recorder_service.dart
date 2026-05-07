@@ -29,12 +29,12 @@ abstract interface class RecorderService {
 }
 
 @Injectable(as: RecorderService)
-class RecordServiceImpl implements RecorderService {
+class RecorderServiceImpl implements RecorderService {
   final AudioRecorder _recorder;
   final RecordsPathUtil _pathUtil;
   final RecordDurationUtil _recordDuration;
 
-  RecordServiceImpl({
+  RecorderServiceImpl({
     required AudioRecorder recorder,
     required RecordsPathUtil pathUtil,
     required RecordDurationUtil recordDurationUtil,

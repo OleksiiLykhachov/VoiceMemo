@@ -66,7 +66,7 @@ class Records extends StatelessWidget {
       seekBackward: (value) {
         bloc.add(PlayerEvent.seekBackward(value));
       },
-      seekFroward: (value) {
+      seekForward: (value) {
         bloc.add(PlayerEvent.seekForward(value));
       },
       showOptions: () => _showOptions(context, record),

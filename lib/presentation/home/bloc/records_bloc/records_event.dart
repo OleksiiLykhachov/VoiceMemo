@@ -12,7 +12,6 @@ sealed class RecordsEvent with _$RecordsEvent {
   const factory RecordsEvent.rename({
     required int id,
     required String name,
-    
   }) = _Rename;
 
   const factory RecordsEvent.delete(int id) = _Delete;

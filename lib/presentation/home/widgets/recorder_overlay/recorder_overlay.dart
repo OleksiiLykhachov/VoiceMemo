@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/recorder_bloc/recorder_bloc.dart';
-import '../record_pannel/record_pannel.dart';
+import '../record_panel/record_panel.dart';
 import 'recorder_background.dart';
 import 'recorder_overlay_content.dart';
 
@@ -77,7 +77,7 @@ class _RecorderOverlayState extends State<RecorderOverlay>
             bottom: 0,
             left: 0,
             right: 0,
-            child: RecordPannel(),
+            child: RecordPanel(),
           ),
         ],
       ),

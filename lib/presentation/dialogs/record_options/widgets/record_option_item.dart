@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 
 import 'package:voice_memos/presentation/presentation.dart';
@@ -16,7 +15,7 @@ class RecordOptionItem extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.icon,
-    this.colors = const RecordOptionColors.standart(),
+    this.colors = const RecordOptionColors.standard(),
     this.onTap,
     super.key,
   });
@@ -85,7 +84,7 @@ class RecordOptionColors {
   final Color subtitle;
   final Color arrow;
 
-  const RecordOptionColors.standart({
+  const RecordOptionColors.standard({
     this.iconBackground = VoiceMemosColors.faint,
     this.iconForeground = VoiceMemosColors.black,
     this.border = VoiceMemosColors.border,

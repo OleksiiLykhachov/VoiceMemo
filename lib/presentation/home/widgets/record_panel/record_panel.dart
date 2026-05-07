@@ -5,12 +5,12 @@ import 'package:gap/gap.dart';
 import 'package:voice_memos/presentation/styles/styles.dart';
 
 import '../../bloc/bloc.dart';
-import 'record_pannel_clipper.dart';
+import 'record_panel_clipper.dart';
 import 'recording_duration.dart';
 import '../record_button/record_button.dart';
 
-class RecordPannel extends StatelessWidget {
-  const RecordPannel({super.key});
+class RecordPanel extends StatelessWidget {
+  const RecordPanel({super.key});
 
   @override
   Widget build(BuildContext context) {

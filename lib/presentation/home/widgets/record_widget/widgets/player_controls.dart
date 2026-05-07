@@ -3,13 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:voice_memos/presentation/presentation.dart';
 
-class PlayerControlls extends StatelessWidget {
+class PlayerControls extends StatelessWidget {
   final VoidCallback? onTogglePlay;
   final ValueChanged<Duration>? onForward;
   final ValueChanged<Duration>? onBackward;
   final bool playing;
 
-  const PlayerControlls({
+  const PlayerControls({
     required this.onTogglePlay,
     required this.onForward,
     required this.onBackward,

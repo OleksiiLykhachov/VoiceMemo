@@ -56,7 +56,7 @@ class RecordOptionsBottomSheet extends StatelessWidget {
           ),
           RecordOptionItem(
             onTap: () => _select(context, RecordOption.rename),
-            colors: RecordOptionColors.standart(),
+            colors: RecordOptionColors.standard(),
             icon: CupertinoIcons.pen,
             title: Text('Rename'),
             subtitle: Text('Change the title of this memo'),
