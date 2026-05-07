@@ -187,7 +187,7 @@ class _WaveformState extends State<Waveform>
 
   double _normalizeAmplitude(AmplitudeData amplitudeData) {
     final current = amplitudeData.current;
-    final max = amplitudeData.max;
+    final max = amplitudeData.max.clamp(-24.0, 12.0);
 
     if (!current.isFinite) {
       return kWaveformMinAmplitude;
@@ -199,8 +199,9 @@ class _WaveformState extends State<Waveform>
     }
 
     final maxLinear = _dbToLinear(max);
-    final normalized =
-        maxLinear > 0 ? (currentLinear / maxLinear) : currentLinear;
+    final normalized = maxLinear > 0
+        ? (currentLinear / maxLinear)
+        : currentLinear;
     if (!normalized.isFinite) {
       return kWaveformMinAmplitude;
     }

@@ -57,7 +57,7 @@ class PlayButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TappableArea(
+    return Tappable(
       onTap: onTap,
       child: SizedBox.square(
         dimension: 80,
@@ -90,7 +90,7 @@ class _IconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox.square(
       dimension: 35,
-      child: TappableArea(
+      child: Tappable(
         onTap: onTap,
         child: SvgPicture.asset(path),
       ),

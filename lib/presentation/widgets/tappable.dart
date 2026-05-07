@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TappableArea extends StatefulWidget {
-  const TappableArea({
+class Tappable extends StatefulWidget {
+  const Tappable({
     required this.child,
     this.onTap,
     this.behavior = HitTestBehavior.opaque,
@@ -14,10 +14,10 @@ class TappableArea extends StatefulWidget {
   final EdgeInsets padding;
 
   @override
-  State<TappableArea> createState() => _TappableAreaState();
+  State<Tappable> createState() => _TappableState();
 }
 
-class _TappableAreaState extends State<TappableArea> {
+class _TappableState extends State<Tappable> {
   bool _pressed = false;
 
   void _setPressedValue(bool value) {

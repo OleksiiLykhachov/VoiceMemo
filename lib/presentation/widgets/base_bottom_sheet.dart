@@ -59,7 +59,7 @@ class _Grabber extends StatelessWidget {
       height: 4,
       width: 38,
       decoration: BoxDecoration(
-        color: VoiceMemosColors.textTertiary,
+        color: VoiceMemosColors.border,
         borderRadius: const BorderRadius.all(Radius.circular(2)),
       ),
     );
