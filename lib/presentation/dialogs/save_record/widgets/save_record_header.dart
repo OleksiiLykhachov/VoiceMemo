@@ -28,23 +28,16 @@ class SaveRecordHeader extends StatelessWidget {
             const Gap(8),
             Text(
               'RECORDING CAPTURED  ·  ${duration.getFormattedString()}',
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.w600,
-                color: VoiceMemosColors.grey,
+              style: VoiceMemosTextStyles.labelSmall.copyWith(
+                color: VoiceMemosColors.textSecondary,
               ),
             ),
           ],
         ),
-        const Gap(16),
+        const Gap(8),
         Text(
           'NAME YOUR\nMEMO',
-          style: TextStyle(
-            fontFamily: 'Bebas Neue',
-            fontSize: 40,
-            fontWeight: FontWeight.w900,
-            height: 35 / 40,
-          ),
+          style: VoiceMemosTextStyles.displayLarge,
         ),
       ],
     );

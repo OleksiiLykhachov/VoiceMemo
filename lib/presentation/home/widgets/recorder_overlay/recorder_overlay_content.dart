@@ -34,10 +34,8 @@ class RecorderOverlayContent extends StatelessWidget {
               },
               child: Text(
                 'New Recording',
-                style: TextStyle(
+                style: VoiceMemosTextStyles.titleLarge.copyWith(
                   color: VoiceMemosColors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),

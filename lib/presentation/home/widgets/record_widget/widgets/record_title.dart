@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:voice_memos/presentation/presentation.dart';
+
 class RecordTitle extends StatelessWidget {
   final String text;
   const RecordTitle(
@@ -13,12 +15,7 @@ class RecordTitle extends StatelessWidget {
       text,
       textAlign: TextAlign.center,
       maxLines: 2,
-      style: TextStyle(
-        letterSpacing: -1,
-        fontSize: 21,
-        height: 17 / 21,
-        fontWeight: FontWeight.w700,
-      ),
+      style: VoiceMemosTextStyles.titleLarge,
     );
   }
 }

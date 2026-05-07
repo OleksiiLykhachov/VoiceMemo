@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:voice_memos/presentation/styles/voice_memos_colors.dart';
+import 'package:voice_memos/presentation/styles/styles.dart';
 
 Widget? textFieldCounterBuilder(
   BuildContext context, {
@@ -13,9 +13,7 @@ Widget? textFieldCounterBuilder(
     transform: Matrix4.translationValues(20, 0, 0),
     child: Text(
       maxLength == null ? '$currentLength' : '$currentLength/$maxLength',
-      style: TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
+      style: VoiceMemosTextStyles.labelMedium.copyWith(
         color: VoiceMemosColors.black,
       ),
     ),

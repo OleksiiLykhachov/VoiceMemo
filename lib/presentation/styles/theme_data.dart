@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'voice_memos_colors.dart';
-
-const textFieldTextStyle = TextStyle(
-  color: VoiceMemosColors.textDark,
-  fontSize: 16,
-  fontWeight: FontWeight.w600,
-);
+import 'voice_memos_text_styles.dart';
 
 ThemeData themeData() {
-  const buttonTextStyle = TextStyle(fontSize: 14, fontWeight: FontWeight.w700);
-
   const buttonShape = RoundedRectangleBorder(
     borderRadius: BorderRadius.all(Radius.circular(12)),
   );
@@ -19,7 +12,7 @@ ThemeData themeData() {
   return ThemeData(
     fontFamily: 'SF Pro Display',
     brightness: Brightness.light,
-    disabledColor: VoiceMemosColors.grey,
+    disabledColor: VoiceMemosColors.textSecondary,
     chipTheme: ChipThemeData(
       backgroundColor: VoiceMemosColors.white,
       shape: RoundedRectangleBorder(
@@ -29,7 +22,11 @@ ThemeData themeData() {
       ),
     ),
     textTheme: const TextTheme(
-      bodyLarge: textFieldTextStyle,
+      bodyLarge: VoiceMemosTextStyles.bodyLarge,
+    ).copyWith(
+      bodyLarge: VoiceMemosTextStyles.bodyLarge.copyWith(
+        color: VoiceMemosColors.textDark,
+      ),
     ),
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: VoiceMemosColors.red,
@@ -41,7 +38,7 @@ ThemeData themeData() {
         foregroundColor: VoiceMemosColors.white,
         padding: buttonPadding,
         shape: buttonShape,
-        textStyle: buttonTextStyle,
+        textStyle: VoiceMemosTextStyles.labelLarge,
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
@@ -50,7 +47,7 @@ ThemeData themeData() {
         padding: buttonPadding,
         side: const BorderSide(width: 2),
         shape: buttonShape,
-        textStyle: buttonTextStyle,
+        textStyle: VoiceMemosTextStyles.labelLarge,
       ),
     ),
   );
@@ -69,13 +66,13 @@ InputDecorationTheme inputDecorationTheme() {
       horizontal: 16,
       vertical: 14,
     ),
-    hintStyle: textFieldTextStyle.copyWith(
+    hintStyle: VoiceMemosTextStyles.bodyLarge.copyWith(
       color: VoiceMemosColors.textSecondary,
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
       borderSide: borderSide.copyWith(
-        color: VoiceMemosColors.grey,
+        color: VoiceMemosColors.textSecondary,
       ),
     ),
     focusedBorder: OutlineInputBorder(

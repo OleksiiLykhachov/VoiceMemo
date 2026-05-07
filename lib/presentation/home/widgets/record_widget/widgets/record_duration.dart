@@ -16,9 +16,7 @@ class RecordDuration extends StatelessWidget {
 
     return Text(
       duration.getFormattedString(),
-      style: TextStyle(
-        fontSize: 15,
-        fontWeight: FontWeight.w600,
+      style: VoiceMemosTextStyles.labelLarge.copyWith(
         color: VoiceMemosColors.textSecondary,
       ),
     );

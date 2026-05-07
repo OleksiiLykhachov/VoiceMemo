@@ -17,11 +17,7 @@ class EmptyHomePoster extends StatelessWidget {
           child: Center(
             child: Text(
               'Nothing\nRecorded\nYet'.toUpperCase(),
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.w700,
-                height: 38 / 40,
-              ),
+              style: VoiceMemosTextStyles.headlineLarge,
               textAlign: TextAlign.center,
             ),
           ),
@@ -30,10 +26,8 @@ class EmptyHomePoster extends StatelessWidget {
         Text(
           'Your voice memos will live here.\nHold the button below to capture your first thought.',
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: VoiceMemosColors.grey,
+          style: VoiceMemosTextStyles.bodyLarge.copyWith(
+            color: VoiceMemosColors.textSecondary,
           ),
         ),
       ],

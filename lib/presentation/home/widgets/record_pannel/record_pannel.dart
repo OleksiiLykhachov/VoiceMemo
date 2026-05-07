@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:voice_memos/presentation/styles/styles.dart';
 
 import '../../bloc/bloc.dart';
 import 'record_pannel_clipper.dart';
@@ -72,9 +73,8 @@ class RecordPannel extends StatelessWidget {
                         )
                       : Text(
                           'Hold to record a new memo',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey,
+                          style: VoiceMemosTextStyles.bodySmall.copyWith(
+                            color: VoiceMemosColors.textSecondary,
                           ),
                         ),
                 );

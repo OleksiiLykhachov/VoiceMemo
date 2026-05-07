@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:voice_memos/presentation/presentation.dart';
+
 class HomeBackground extends StatelessWidget {
   final Widget child;
 
@@ -17,12 +19,7 @@ class HomeBackground extends StatelessWidget {
           child: Text(
             'VOICE\nMEMOS',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 85,
-              fontWeight: FontWeight.w800,
-              height: 75 / 85,
-              letterSpacing: -5,
-            ),
+            style: VoiceMemosTextStyles.displayHero,
           ),
         ),
         Expanded(

@@ -34,10 +34,9 @@ class NotificationToast extends StatelessWidget {
           const Gap(8),
           Expanded(
             child: DefaultTextStyle(
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
+              style: VoiceMemosTextStyles.bodyMedium.copyWith(
                 color: VoiceMemosColors.white,
+                fontWeight: FontWeight.w500,
               ),
               child: title,
             ),

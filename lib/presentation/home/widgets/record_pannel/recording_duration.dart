@@ -63,11 +63,9 @@ class _RecordingDurationState extends State<RecordingDuration> {
   Widget build(BuildContext context) {
     return Text(
       _elapsed.getFormattedString(true),
-      style: const TextStyle(
+      style: VoiceMemosTextStyles.labelLarge.copyWith(
         color: VoiceMemosColors.textSecondary,
-        fontSize: 14,
-        fontWeight: FontWeight.w600,
-        fontFeatures: [FontFeature.tabularFigures()],
+        fontFeatures: const [FontFeature.tabularFigures()],
       ),
     );
   }
