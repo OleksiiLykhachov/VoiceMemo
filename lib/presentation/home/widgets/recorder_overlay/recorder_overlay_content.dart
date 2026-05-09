@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:voice_memos/presentation/presentation.dart';
 
 import '../waveform/waveform.dart';
@@ -51,6 +52,7 @@ class RecorderOverlayContent extends StatelessWidget {
                 ),
               ),
             ),
+            const Gap(30),
           ],
         ),
       ),

@@ -71,7 +71,7 @@ class RecordWidget extends StatelessWidget {
                           playing: playing,
                         ),
                       ),
-                      const Gap(8),
+                      const Gap(16),
                       Expanded(
                         child: Column(
                           children: [
