@@ -73,6 +73,9 @@ class HomePage extends StatelessWidget {
                 failure: (message) {
                   context.showFailureToast(message);
                 },
+                saved: (record) {
+                  context.showSuccessToast('Saved "${record.name}"');
+                },
                 renamed: (record) {
                   context.showSuccessToast(
                     'Record renamed to "${record.name}"',

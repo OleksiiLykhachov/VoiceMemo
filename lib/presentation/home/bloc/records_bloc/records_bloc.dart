@@ -42,6 +42,7 @@ class RecordsBloc extends Bloc<RecordsEvent, RecordsState>
       );
 
       emit(state.copyWith(records: [record, ...state.records]));
+      emitNotification(RecordsNotification.saved(record));
     }, errorMessage: 'Could not save your recording. Please try again.');
   }
 
