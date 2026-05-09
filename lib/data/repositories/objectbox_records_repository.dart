@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:objectbox/objectbox.dart';
 import 'package:injectable/injectable.dart' hide Order;
@@ -26,12 +27,17 @@ class ObjectBoxRecordsRepository implements RecordsRepository {
 
   @override
   Future<void> delete(int id) async {
-    final query =
-        _recordsBox.query(RecordModel_.objectBoxId.equals(id)).build();
+    final query = _recordsBox
+        .query(RecordModel_.objectBoxId.equals(id))
+        .build();
     final record = query.findFirst();
     query.close();
 
     if (record != null) {
+      final converted = _recordModelConverter.convert(record);
+
+      await File(converted.filePath).delete();
+
       _recordsBox.remove(record.objectBoxId);
     }
   }

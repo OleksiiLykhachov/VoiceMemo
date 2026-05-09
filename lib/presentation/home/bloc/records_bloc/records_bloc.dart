@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:voice_memos/domain/domain.dart';
@@ -23,9 +24,18 @@ class RecordsBloc extends Bloc<RecordsEvent, RecordsState>
     : _repository = repository,
       super(const RecordsState()) {
     on<_Save>(_onSave);
-    on<_Rename>(_onRename);
-    on<_Delete>(_onDelete);
-    on<_Load>(_onLoad);
+    on<_Rename>(
+      _onRename,
+      transformer: sequential(),
+    );
+    on<_Delete>(
+      _onDelete,
+      transformer: sequential(),
+    );
+    on<_Load>(
+      _onLoad,
+      transformer: droppable(),
+    );
   }
 
   FutureOr<void> _onSave(_Save event, Emitter<RecordsState> emit) {
