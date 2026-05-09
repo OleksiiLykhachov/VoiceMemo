@@ -121,6 +121,23 @@ void main() {
       expect(records.single.name, record.name);
     });
 
+    test('delete removes a record even when its stored file is missing', () async {
+      final record = _record(
+        id: 0,
+        name: 'missing-file',
+        createdAt: DateTime(2024, 1, 1),
+      );
+
+      await repository.save(record);
+
+      final savedRecord = (await repository.getRecords()).single;
+
+      await repository.delete(savedRecord.id);
+
+      final records = await repository.getRecords();
+      expect(records, isEmpty);
+    });
+
     test(
       'getRecordsStream emits current records immediately and updates on changes',
       () async {

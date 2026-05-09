@@ -36,7 +36,11 @@ class ObjectBoxRecordsRepository implements RecordsRepository {
     if (record != null) {
       final converted = _recordModelConverter.convert(record);
 
-      await File(converted.filePath).delete();
+      final file = File(converted.filePath);
+
+      if (await file.exists()) {
+        await file.delete();
+      }
 
       _recordsBox.remove(record.objectBoxId);
     }
