@@ -270,6 +270,17 @@ void main() {
           ],
     );
 
+    blocTest<RecordsBloc, RecordsState>(
+      'ignores delete when record id is missing',
+      build: () => RecordsBloc(repository: repository),
+      seed: () => RecordsState(records: [existingRecord, secondRecord]),
+      act: (bloc) => bloc.add(const RecordsEvent.delete(99)),
+      expect: () => <RecordsState>[],
+      verify: (_) {
+        verifyNever(() => repository.delete(any()));
+      },
+    );
+
     test('emits failure notification when delete fails', () async {
       when(() => repository.delete(1)).thenThrow(Exception('delete failed'));
 

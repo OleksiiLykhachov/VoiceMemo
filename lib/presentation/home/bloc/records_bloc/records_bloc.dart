@@ -104,6 +104,10 @@ class RecordsBloc extends Bloc<RecordsEvent, RecordsState>
         final record = updatedRecords.removeWhereAndReturn((item) {
           return item.id == event.id;
         });
+        
+        if (record == null) {
+          return;
+        }
 
         emit(state.copyWith(records: updatedRecords));
 
