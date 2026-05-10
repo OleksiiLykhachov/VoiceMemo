@@ -149,6 +149,16 @@ void main() {
       },
     );
 
+    blocTest<RecorderBloc, RecorderState>(
+      'ignores stop when not recording',
+      build: () => RecorderBloc(recorderService: recorderService),
+      act: (bloc) => bloc.add(const RecorderEvent.stop()),
+      expect: () => <RecorderState>[],
+      verify: (_) {
+        verifyNever(() => recorderService.stop());
+      },
+    );
+
     test('emits recorded notification when recording stops', () async {
       final file = File('/tmp/recording.pcm');
       when(() => recorderService.stop()).thenAnswer(

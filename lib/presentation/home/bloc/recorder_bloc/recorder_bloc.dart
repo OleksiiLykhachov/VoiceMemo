@@ -59,13 +59,21 @@ class RecorderBloc extends Bloc<RecorderEvent, RecorderState>
 
   FutureOr<void> _onStop(_Stop event, Emitter<RecorderState> emit) {
     return handle(() async {
+      if (!state.recording) {
+        return;
+      }
+
       final stopDate = DateTime.now();
+      final startedAt = state.startedAt;
       final recording = await _recorderService.stop();
 
       emitNotification(
         RecorderNotification.recorded(
           recording.file,
-          recording.duration ?? stopDate.difference(state.startedAt!),
+          recording.duration ??
+              (startedAt == null
+                  ? Duration.zero
+                  : stopDate.difference(startedAt)),
         ),
       );
 
