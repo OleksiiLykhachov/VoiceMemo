@@ -10,7 +10,7 @@ ThemeData themeData() {
   const buttonPadding = EdgeInsets.all(16);
 
   return ThemeData(
-    fontFamily: 'SF Pro Display',
+    fontFamily: 'Roboto',
     brightness: Brightness.light,
     disabledColor: VoiceMemosColors.textSecondary,
     chipTheme: ChipThemeData(

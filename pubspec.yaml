@@ -49,13 +49,13 @@ flutter:
   uses-material-design: true
 
   fonts:
-    - family: SF Pro Display
+    - family: Roboto
       fonts:
-        - asset: fonts/sf-pro-display/SFPRODISPLAYREGULAR.otf
+        - asset: fonts/roboto/Roboto-Regular.ttf
           weight: 400
-        - asset: fonts/sf-pro-display/SFPRODISPLAYMEDIUM.otf
+        - asset: fonts/roboto/Roboto-Medium.ttf
           weight: 500
-        - asset: fonts/sf-pro-display/SFPRODISPLAYBOLD.otf
+        - asset: fonts/roboto/Roboto-Bold.ttf
           weight: 700
 
   assets:
