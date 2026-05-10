@@ -38,13 +38,7 @@ class HomePage extends StatelessWidget {
       return;
     }
 
-    bloc.add(
-      RecordsEvent.save(
-        file: file,
-        name: name,
-        duration: duration,
-      ),
-    );
+    bloc.add(RecordsEvent.save(file: file, name: name, duration: duration));
   }
 
   @override
@@ -55,6 +49,9 @@ class HomePage extends StatelessWidget {
           BlocNotificationListener<RecorderNotification, RecorderBloc>(
             listen: (context, notificaiton) {
               notificaiton.whenOrNull(
+                recordingStarted: () {
+                  context.read<PlayerBloc>().add(const PlayerEvent.pause());
+                },
                 recorded: (file, duration) {
                   _onNewRecord(context, file, duration);
                 },
@@ -101,9 +98,7 @@ class HomePage extends StatelessWidget {
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           backgroundColor: VoiceMemosColors.background,
-          body: RecorderOverlay(
-            child: const HomeContent(),
-          ),
+          body: RecorderOverlay(child: const HomeContent()),
         ),
       ),
     );

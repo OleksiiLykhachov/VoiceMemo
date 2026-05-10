@@ -102,14 +102,19 @@ void main() {
       },
       build: () => RecorderBloc(recorderService: recorderService),
       act: (bloc) => bloc.add(const RecorderEvent.start()),
-      expect: () => [
-        const RecorderState(show: true),
-        isA<RecorderState>()
-            .having((state) => state.show, 'show', true)
-            .having((state) => state.recording, 'recording', true)
-            .having((state) => state.amplitudeStream, 'amplitudeStream', isNotNull)
-            .having((state) => state.startedAt, 'startedAt', isNotNull),
-      ],
+      expect:
+          () => [
+            const RecorderState(show: true),
+            isA<RecorderState>()
+                .having((state) => state.show, 'show', true)
+                .having((state) => state.recording, 'recording', true)
+                .having(
+                  (state) => state.amplitudeStream,
+                  'amplitudeStream',
+                  isNotNull,
+                )
+                .having((state) => state.startedAt, 'startedAt', isNotNull),
+          ],
       verify: (_) {
         verify(() => recorderService.resolvePermission()).called(1);
         verify(() => recorderService.start()).called(1);
@@ -129,16 +134,15 @@ void main() {
         );
       },
       build: () => RecorderBloc(recorderService: recorderService),
-      seed: () => RecorderState(
-        recording: true,
-        show: true,
-        amplitudeStream: Stream<AmplitudeData>.empty(),
-        startedAt: DateTime(2026, 1, 1),
-      ),
+      seed:
+          () => RecorderState(
+            recording: true,
+            show: true,
+            amplitudeStream: Stream<AmplitudeData>.empty(),
+            startedAt: DateTime(2026, 1, 1),
+          ),
       act: (bloc) => bloc.add(const RecorderEvent.stop()),
-      expect: () => const [
-        RecorderState(),
-      ],
+      expect: () => const [RecorderState()],
       verify: (_) {
         verify(() => recorderService.stop()).called(1);
       },
@@ -147,10 +151,8 @@ void main() {
     test('emits recorded notification when recording stops', () async {
       final file = File('/tmp/recording.pcm');
       when(() => recorderService.stop()).thenAnswer(
-        (_) async => AudioRecording(
-          file: file,
-          duration: const Duration(seconds: 3),
-        ),
+        (_) async =>
+            AudioRecording(file: file, duration: const Duration(seconds: 3)),
       );
 
       final bloc = RecorderBloc(recorderService: recorderService);
@@ -166,23 +168,27 @@ void main() {
       final notificationExpectation = expectLater(
         bloc.notificationStream,
         emits(
-            isA<RecorderNotification>().having(
-              (notification) => notification.map(
-                recorded: (recorded) => recorded.file,
-                failure: (_) => null,
-                noMicPermission: (_) => null,
+          isA<RecorderNotification>()
+              .having(
+                (notification) => notification.map(
+                  recordingStarted: (_) => null,
+                  recorded: (recorded) => recorded.file,
+                  failure: (_) => null,
+                  noMicPermission: (_) => null,
+                ),
+                'file',
+                file,
+              )
+              .having(
+                (notification) => notification.map(
+                  recordingStarted: (_) => null,
+                  recorded: (recorded) => recorded.duration,
+                  failure: (_) => null,
+                  noMicPermission: (_) => null,
+                ),
+                'duration',
+                const Duration(seconds: 3),
               ),
-              'file',
-              file,
-            ).having(
-              (notification) => notification.map(
-                recorded: (recorded) => recorded.duration,
-                failure: (_) => null,
-                noMicPermission: (_) => null,
-              ),
-              'duration',
-              const Duration(seconds: 3),
-            ),
         ),
       );
 

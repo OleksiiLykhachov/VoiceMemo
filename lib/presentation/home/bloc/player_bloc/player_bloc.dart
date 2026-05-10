@@ -27,6 +27,7 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState>
       _onSetRecord,
       transformer: debounceRestartable(const Duration(milliseconds: 250)),
     );
+    on<_Pause>(_onPause);
     on<_TogglePlay>(_onTogglePlay);
     on<_SeekForward>(_onSeekForward);
     on<_SeekBackward>(_onSeekBackward);
@@ -54,6 +55,16 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState>
 
       emit(PlayerState(record: record));
     }, errorMessage: 'Could not open the recording. Please try again.');
+  }
+
+  FutureOr<void> _onPause(_Pause event, Emitter<PlayerState> emit) async {
+    if (!state.playing) {
+      return;
+    }
+
+    return handle(() async {
+      await _playerService.pause();
+    }, errorMessage: 'Could not pause the recording. Please try again.');
   }
 
   FutureOr<void> _onTogglePlay(
