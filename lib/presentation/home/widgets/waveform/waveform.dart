@@ -283,6 +283,10 @@ class _RenderMeasureSize extends RenderProxyBox {
 
     _lastSize = newSize;
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!attached) {
+        return;
+      }
+
       onChange(newSize);
     });
   }
