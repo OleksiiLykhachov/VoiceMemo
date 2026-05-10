@@ -11,16 +11,16 @@ import 'widgets/record_title.dart';
 class RecordWidget extends StatelessWidget {
   final Record record;
   final bool playing;
-  final Animation<double>? animation;
+  final Animation<double> animation;
   final Duration position;
   final RecordCallbacks? callbacks;
 
   const RecordWidget({
     required this.record,
     required this.playing,
+    required this.animation,
     this.position = Duration.zero,
     this.callbacks,
-    this.animation,
     super.key,
   });
 
@@ -37,13 +37,13 @@ class RecordWidget extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: AnimatedBuilder(
-                    animation: animation!,
+                    animation: animation,
                     builder: (context, widget) {
                       return Transform.translate(
                         offset: Tween(
                           begin: Offset(0, constraints.maxHeight * 0.7),
                           end: Offset.zero,
-                        ).evaluate(animation!),
+                        ).evaluate(animation),
                         child: widget,
                       );
                     },
@@ -58,7 +58,7 @@ class RecordWidget extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: FadeTransition(
-                  opacity: animation!,
+                  opacity: animation,
                   child: Column(
                     children: [
                       Expanded(
