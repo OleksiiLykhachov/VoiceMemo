@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 
 class SaveRecordButtons extends StatelessWidget {
   final VoidCallback onDiscard;
-  final VoidCallback onSave;
+  final VoidCallback? onSave;
 
   const SaveRecordButtons({
     super.key,

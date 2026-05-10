@@ -70,12 +70,22 @@ class _SaveRecordBottomSheetState extends State<SaveRecordBottomSheet> {
               },
             ),
             const Gap(16),
-            SaveRecordButtons(
-              onDiscard: () {
-                Navigator.pop(context);
-              },
-              onSave: () {
-                Navigator.pop(context, _nameController.text);
+            ValueListenableBuilder(
+              valueListenable: _nameController,
+              builder: (context, value, child) {
+                final name = value.text.trim();
+
+                return SaveRecordButtons(
+                  onDiscard: () {
+                    Navigator.pop(context);
+                  },
+                  onSave:
+                      name.isEmpty
+                          ? null
+                          : () {
+                            Navigator.pop(context, name);
+                          },
+                );
               },
             ),
           ],
